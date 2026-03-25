@@ -1,15 +1,16 @@
-version: '3'
-
 services:
-  myDB:
-    image: postgres:15.3
-    container_name: my-database
+  DataBase:
+    image: postgres:17
+    container_name: uab-database
     restart: always
     ports:
-      - 5454:5432
+      - 5222:5432
     environment:
       - POSTGRES_USER=sa
       - POSTGRES_PASSWORD=1844
       - POSTGRES_DB=googlekeep-db
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

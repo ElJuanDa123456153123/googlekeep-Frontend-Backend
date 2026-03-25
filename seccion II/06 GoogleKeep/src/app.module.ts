@@ -7,6 +7,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Usuario } from './usuario/model/usuario.model';
 import { ConfigModule } from '@nestjs/config';
 import { UsuarioService } from './usuario/usuario.service';
+import { Noteshare } from './noteshare/model/noteshare.model';
+import { Note } from './note/model/note.model';
+import { NoteShareController } from './noteshare/noteshare.controller';
+import { NoteShareService } from './noteshare/noteshare.service';
+import { NoteController } from './note/note.controller';
+import { NoteService } from './note/note.service';
 
 @Module({
   imports: [
@@ -18,12 +24,19 @@ import { UsuarioService } from './usuario/usuario.service';
     TypeOrmModule.forRootAsync({
       useFactory: ormConfig
     }),
-    TypeOrmModule.forFeature([Usuario])
+    TypeOrmModule.forFeature([Usuario, Noteshare, Note])
   ],
-  controllers: [AppController, UsuarioController],
+  controllers: [
+    AppController, 
+    UsuarioController,
+    NoteShareController,
+    NoteController
+  ],
   providers: [
     // AppService
-    UsuarioService
+    UsuarioService,
+    NoteShareService,
+    NoteService
   ],
 })
 export class AppModule {}

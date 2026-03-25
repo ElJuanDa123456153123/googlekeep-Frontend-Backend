@@ -1,17 +1,24 @@
+import { IsBoolean } from "class-validator";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
-export class Usuario {
-    @PrimaryGeneratedColumn({name: 'usuario_id'})
+export class Note {
+    @PrimaryGeneratedColumn({name: 'note_id'})
     id: number;
+
     @Column()
-    name: string;
+    title: string;
+
     @Column()
-    email: string;
+    content: string;
+
     @Column()
-    password: string;
+    @IsBoolean()
+    activo: boolean;
+
     @CreateDateColumn()
     created_at: Date;
+
     @UpdateDateColumn()
     updated_at: Date;
 }

@@ -1,5 +1,7 @@
 import { registerAs } from "@nestjs/config";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { Note } from "src/note/model/note.model";
+import { Noteshare } from "src/noteshare/model/noteshare.model";
 import { Usuario } from "src/usuario/model/usuario.model";
 
 export default registerAs(
@@ -11,7 +13,7 @@ export default registerAs(
         username: 'sa',
         password: '1844',
         database: 'googlekeep-db',
-        entities: [Usuario],
+        entities: [Usuario, Noteshare, Note],
         synchronize: true,
     }),
 );
