@@ -15,17 +15,17 @@ export class UsuarioController {
 
   @Post('getbyid/:id')
   getPerson(@Param('id', ParseIntPipe) id: number) {
-    return this.service.getPerson(id);
+    return this.service.getById(id);
   }
 
-  @Post('saveorupdate')
-  async saveOrUpdatePerson(@Body() data: UsuarioDto) {
-    return await this.service.saveOrUpdatePerson(data);
+  @Post('save')
+  async save(@Body() data: UsuarioDto) {
+    return await this.service.save(data);
   }
 
-  @Post('deletebyid/:id')
+  @Post('delete/:id')
   async deletePerson(@Param('id', ParseIntPipe) id: number) {
-    return await this.service.deletePerson(id);
+    return await this.service.delete(id);
   }
   @Post('verifypassword')
   async verifyPassword(@Body() { plainPassword, hashedPassword }: { plainPassword: string; hashedPassword: string }) {

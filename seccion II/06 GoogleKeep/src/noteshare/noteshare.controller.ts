@@ -2,23 +2,23 @@ import { Body, Controller, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { NoteShareService } from "./noteshare.service";
 import { NoteshareDto } from "./dto/noteshare.dto";
 
-@Controller()
+@Controller("notesharecontroller")
 export class NoteShareController {
     constructor(
         private readonly service: NoteShareService
     ) {}
 
     @Post('getall')
-    getAll() {
-        return this.service.getAll();
+    async getAll() {
+        return await this.service.getAll();
     }
 
     @Post('getbyid/:id')
-    get(@Param('id', ParseIntPipe) id: number) {
-        return this.service.getById(id);
+    async get(@Param('id', ParseIntPipe) id: number) {
+        return await this.service.getById(id);
     }
 
-    @Post('saveorupdate')
+    @Post('save')
     async save(@Body() data: NoteshareDto) {
         return await this.service.save(data);
     }

@@ -13,9 +13,16 @@ import { NoteShareController } from './noteshare/noteshare.controller';
 import { NoteShareService } from './noteshare/noteshare.service';
 import { NoteController } from './note/note.controller';
 import { NoteService } from './note/note.service';
+import { MulterModule } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import path from 'path/win32';
+import { Attachment } from './attachment/model/attachment.model';
+import { AttachmentController } from './attachment/attachment.controller';
+import { AttachmentService } from './attachment/attachment.service';
 
 @Module({
   imports: [
+        
     ConfigModule.forRoot({
       isGlobal: true,
       load: [ormConfig],
@@ -24,19 +31,21 @@ import { NoteService } from './note/note.service';
     TypeOrmModule.forRootAsync({
       useFactory: ormConfig
     }),
-    TypeOrmModule.forFeature([Usuario, Noteshare, Note])
+    TypeOrmModule.forFeature([Usuario, Noteshare, Note, Attachment])
   ],
   controllers: [
     AppController, 
     UsuarioController,
     NoteShareController,
-    NoteController
+    NoteController,
+    AttachmentController
   ],
   providers: [
     // AppService
     UsuarioService,
     NoteShareService,
-    NoteService
+    NoteService,
+    AttachmentService
   ],
 })
 export class AppModule {}

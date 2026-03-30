@@ -2,7 +2,7 @@ import { Body, Controller, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { NoteService } from "./note.service";
 import { NoteDto } from "./dto/note.dto";
 
-@Controller()
+@Controller("notecontroller")
 export class NoteController {
     constructor(
         private readonly service: NoteService
@@ -18,12 +18,12 @@ export class NoteController {
         return this.service.getById(id);
     }
 
-    @Post('saveorupdate')
+    @Post('save')
     async save(@Body() data: NoteDto) {
         return await this.service.save(data);
     }
 
-    @Post('deletebyid/:id')
+    @Post('delete/:id')
     async delete(@Param('id', ParseIntPipe) id: number) {
         return await this.service.delete(id);
     }
