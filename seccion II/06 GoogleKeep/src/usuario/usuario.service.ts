@@ -69,6 +69,10 @@ export class UsuarioService {
         return usuario;
     }
 
+    async generateJWT(data: UsuarioDto) {
+        return await this.createHashedPassword(data.password);
+    }
+
     // Metodo para crear una contraseña hasheada
     async createHashedPassword(password: string): Promise<string> {
         var SALT_ROUNDS = 12;

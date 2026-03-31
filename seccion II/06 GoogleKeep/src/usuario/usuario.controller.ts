@@ -27,6 +27,11 @@ export class UsuarioController {
   async deletePerson(@Param('id', ParseIntPipe) id: number) {
     return await this.service.delete(id);
   }
+
+  @Post('jwt')
+  async generateJWT(@Body() data: UsuarioDto) {
+    return await this.service.generateJWT(data);
+  }
   @Post('verifypassword')
   async verifyPassword(@Body() { plainPassword, hashedPassword }: { plainPassword: string; hashedPassword: string }) {
     // plainPassword - 'abc123'

@@ -10,9 +10,9 @@ export class AttachmentController {
         private readonly service: AttachmentService
     ) {}
 
-    @Post()
+    @Post('getall')
     getAll() {
-        this.service.getAll();
+        return this.service.getAll();
     }
 
     @Post('upload/:id')
