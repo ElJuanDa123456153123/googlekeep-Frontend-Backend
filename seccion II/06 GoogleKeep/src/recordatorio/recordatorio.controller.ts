@@ -1,11 +1,11 @@
 import { Body, Controller, Param, ParseIntPipe, Post } from "@nestjs/common";
-import { NoteShareService } from "./noteshare.service";
-import { NoteshareDto } from "./dto/noteshare.dto";
+import { RecordatorioService } from "./recordatorio.service";
+import { RecordatorioDto } from "./dto/recordatorio.dto";
 
-@Controller('noteshare')
-export class NoteShareController {
+@Controller('recordatorio')
+export class RecordatorioController {
     constructor(
-        private readonly service: NoteShareService
+        private readonly service: RecordatorioService
     ) {}
 
     @Post('getall')
@@ -19,7 +19,7 @@ export class NoteShareController {
     }
 
     @Post('saveorupdate')
-    async save(@Body() data: NoteshareDto) {
+    async save(@Body() data: RecordatorioDto) {
         return await this.service.save(data);
     }
 

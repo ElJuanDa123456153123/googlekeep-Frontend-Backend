@@ -5,13 +5,13 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 export class Attachment {
     @PrimaryGeneratedColumn()
     id: number;
-    @Column()
+    @Column({ nullable: true })
     filename: string;
-    @Column()
+    @Column({ nullable: true })
     filetype: string;
     @Column({ nullable: true })
     filesize: number;
-    @Column({ type: 'bytea' })
+    @Column({ type: 'bytea', nullable: true })
     filedata: Buffer;
 
     @ManyToOne(() => Note, note => note.id)

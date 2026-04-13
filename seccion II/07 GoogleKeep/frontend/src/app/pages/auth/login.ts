@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
 import { AppFloatingConfigurator } from '../../layout/component/app.floatingconfigurator';
+import { AuthService } from '../../service/auth.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule, AppFloatingConfigurator],
+    providers: [MessageService],
     template: `
         <app-floating-configurator />
         <div class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-screen overflow-hidden">
@@ -54,7 +57,7 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
                                 </div>
                                 <span class="font-medium no-underline ml-2 text-right cursor-pointer text-primary">Forgot password?</span>
                             </div>
-                            <p-button label="Sign In" styleClass="w-full" routerLink="/"></p-button>
+                            <p-button label="Sign In" styleClass="w-full" (click)="onLogin()" [loading]="loading" [disabled]="loading"></p-button>
                         </div>
                     </div>
                 </div>
@@ -64,8 +67,51 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
 })
 export class Login {
     email: string = '';
-
     password: string = '';
-
     checked: boolean = false;
+    loading: boolean = false;
+
+    constructor(
+        private authService: AuthService,
+        private router: Router,
+        private messageService: MessageService
+    ) {}
+
+    onLogin() {
+        if (!this.email || !this.password) {
+            this.messageService.add({
+                severity: 'warn',
+                summary: 'Advertencia',
+                detail: 'Por favor ingresa email y password'
+            });
+            return;
+        }
+
+        this.loading = true;
+
+        this.authService.login(this.email, this.password).subscribe({
+            next: (response) => {
+                this.authService.saveToken(response.access_token);
+
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Éxito',
+                    detail: 'Login exitoso!'
+                });
+
+                setTimeout(() => {
+                    this.loading = false;
+                    this.router.navigate(['/']);
+                }, 1000);
+            },
+            error: (error) => {
+                this.loading = false;
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Credenciales inválidas'
+                });
+            }
+        });
+    }
 }

@@ -1,4 +1,5 @@
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { UsuarioDto } from "src/usuario/dto/usuario.dto";
 
 export class NoteDto {
 
@@ -12,7 +13,10 @@ export class NoteDto {
     @IsNotEmpty()
     @IsString()
     content: string;
-    
+
     @IsBoolean()
     activo: boolean;
+
+    @IsNotEmpty()
+    usuario: UsuarioDto;
 }

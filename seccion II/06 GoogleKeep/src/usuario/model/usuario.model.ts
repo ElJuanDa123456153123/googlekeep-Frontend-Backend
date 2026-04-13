@@ -8,7 +8,7 @@ export class Usuario {
     name: string;
     @Column()
     email: string;
-    @Column()
+    @Column({ select: false })
     password: string;
     @CreateDateColumn()
     created_at: Date;

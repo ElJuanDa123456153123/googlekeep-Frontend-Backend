@@ -11,37 +11,36 @@ export class NoteShareService {
         private readonly repository: Repository<Noteshare>
     ) {}
 
-    async getAll() {
-        return await this.repository.find({
-            relations: { note: true, usuario: true},
-            // relations: ['note', 'usuario'],
+    getAll() {
+        return this.repository.find({
+            // relations: ['note', 'usuario', 'note.usuario']
+            relations : { note: true, usuario: true},
             select: {
                 id: true,
                 role: true,
                 note: {
                     id: true,
-                    title: true
-                },
-                usuario: {
-                    id: true,
-                    name: true,
-                    email: true
-                }
+                    title: true,
+            },
+            usuario: {
+                id: true,
+                name: true,
             }
-        });
+        }});
     }
 
-    async getById(id: number) {
-        // return await this.repository.findOne({
-        //     where: { id }
+    getById(id: number) {
+        // var data = this.repository.findOne({
+        //     where: { id },
+        //     relations: ['note', 'usuario', 'note.usuario']
         // });
-        return await this.findById(id);
+        // return data;
+        return this.findById(id);
     }
 
     async save(data: NoteshareDto) {
         if(data.id != undefined && data.id != null && data.id != 0) {
-            // const usuario = await this.repository.findOneBy({id: data.id});
-            const usuario = await this.findById(data.id);
+            const usuario = await this.repository.findOneBy({id: data.id});
             if(!usuario) throw new Error(`Entidad con id ${data.id} no encontrado`);
 
             await this.repository.update({id: data.id}, data);
@@ -61,23 +60,35 @@ export class NoteShareService {
     }
 
     async findById(id: number) {
-        var data = await this.repository.findOne({
+        const entity = await this.repository.findOne({
             where: { id },
-            relations: { note: true, usuario: true},
-            select: {
-                id: true,
-                role: true,
-                note: {
+            relations: ['note', 'usuario', 'note.usuario']
+        });
+
+        if(!entity) throw new Error(`Entidad con id ${id} no encontrado`);
+
+        return entity;
+    }
+
+    async getfindById(id: number) {
+        var data = await this.repository.findOne(
+            {
+                where: { id },
+                relations: { note: true, usuario: true},
+                select: {
                     id: true,
-                    title: true
-                },
-                usuario: {
-                    id: true,
-                    name: true
+                    role: true,
+                    note: {
+                        id: true,
+                        title: true,
+                    },
+                    usuario: {
+                        id: true,
+                        name: true,
+                    }
                 }
             }
-        })
-
+        )
         return data;
     }
 }

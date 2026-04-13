@@ -4,7 +4,17 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
+  app.enableCors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+  });
+
+  //   app.enableCors({
+  //   origin: '*',
+  //   methods: '*',
+  // });
+
   app.setGlobalPrefix('api/v1');
 
   app.useGlobalPipes(new ValidationPipe({
@@ -13,7 +23,7 @@ async function bootstrap() {
     transform: true,            //Transforma los datos de entrada al tipo definido en el DTO
   }));
 
-  var port = 3000;
+  var port = 3001;
   await app.listen(port);
 }
 bootstrap();

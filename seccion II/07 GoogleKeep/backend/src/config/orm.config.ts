@@ -9,10 +9,10 @@ export default registerAs(
     (): TypeOrmModuleOptions => ({
         type: 'postgres',
         host: '127.0.0.1',
-        port: 5222,
-        username: 'postgres',
+        port: 8000,
+        username: 'sa',
         password: '1844',
-        database: 'impocruz-db',
+        database: 'googlekeep-db',
         entities: [Usuario, Noteshare, Note, Noteshare],
         synchronize: true,
     }),

@@ -82,4 +82,12 @@ export class UsuarioService {
     async verifyPassword(plainPassword: string, hashedPassword: string): Promise<boolean> {
         return await bcrypt.compareSync(plainPassword, hashedPassword);
     }
+
+    async findByForLogin(email: string): Promise<Usuario | undefined> {
+        const usuario = await this.repository.findOne({
+            where: { email },
+            select: ['id', 'name', 'email', 'password'] // Incluye el campo password para la verificación
+        });
+        return usuario;
+    }
 }

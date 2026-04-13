@@ -16,13 +16,16 @@ import { NoteService } from './note/note.service';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import path from 'path/win32';
+import { Recordatorio } from './recordatorio/model/recordatorio.model';
+import { RecordatorioController } from './recordatorio/recordatorio.controller';
+import { RecordatorioService } from './recordatorio/recordatorio.service';
 import { Attachment } from './attachment/model/attachment.model';
 import { AttachmentController } from './attachment/attachment.controller';
 import { AttachmentService } from './attachment/attachment.service';
 
 @Module({
   imports: [
-        
+
     ConfigModule.forRoot({
       isGlobal: true,
       load: [ormConfig],
@@ -31,13 +34,24 @@ import { AttachmentService } from './attachment/attachment.service';
     TypeOrmModule.forRootAsync({
       useFactory: ormConfig
     }),
-    TypeOrmModule.forFeature([Usuario, Noteshare, Note, Attachment])
+    TypeOrmModule.forFeature([Usuario, Noteshare, Note, Recordatorio, Attachment]),
+    MulterModule.register({
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+          const filename = path.parse(file.originalname).name.replace(/\s/g, '') + Date.now();
+          const extension = path.parse(file.originalname).ext;
+          cb(null, `${filename}${extension}`);
+        },
+      }),
+    }),
   ],
   controllers: [
-    AppController, 
+    AppController,
     UsuarioController,
     NoteShareController,
     NoteController,
+    RecordatorioController,
     AttachmentController
   ],
   providers: [
@@ -45,6 +59,7 @@ import { AttachmentService } from './attachment/attachment.service';
     UsuarioService,
     NoteShareService,
     NoteService,
+    RecordatorioService,
     AttachmentService
   ],
 })

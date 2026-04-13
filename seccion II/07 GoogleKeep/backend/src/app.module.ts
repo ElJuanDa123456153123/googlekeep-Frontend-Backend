@@ -13,6 +13,7 @@ import { NoteShareController } from './noteshare/noteshare.controller';
 import { NoteShareService } from './noteshare/noteshare.service';
 import { NoteController } from './note/note.controller';
 import { NoteService } from './note/note.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { NoteService } from './note/note.service';
     TypeOrmModule.forRootAsync({
       useFactory: ormConfig
     }),
-    TypeOrmModule.forFeature([Usuario, Noteshare, Note, Noteshare])
+    TypeOrmModule.forFeature([Usuario, Noteshare, Note, Noteshare]),
+    AuthModule
   ],
   controllers: [
     AppController, 

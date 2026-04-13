@@ -1,36 +1,36 @@
 import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Note } from "./model/note.model";
-import { NoteDto } from "./dto/note.dto";
+import { Recordatorio } from "./model/recordatorio.model";
+import { RecordatorioDto } from "./dto/recordatorio.dto";
 
 @Injectable()
-export class NoteService {
+export class RecordatorioService {
     constructor(
-        @InjectRepository(Note)
-        private readonly repository: Repository<Note>
+        @InjectRepository(Recordatorio)
+        private readonly repository: Repository<Recordatorio>
     ) {}
 
     getAll() {
         return this.repository.find({
-            relations: ['usuario', 'shares']
+            relations: ['note']
         });
     }
 
     getById(id: number) {
-        var data = this.repository.findOne({
+        const data = this.repository.findOne({
             where: { id },
-            relations: ['usuario', 'shares']
+            relations: ['note']
         });
         return data;
     }
 
-    async save(data: NoteDto) {
+    async save(data: RecordatorioDto) {
         if(data.id != undefined && data.id != null && data.id != 0) {
-            const usuario = await this.repository.findOneBy({id: data.id});
-            if(!usuario) throw new Error(`Entidad con id ${data.id} no encontrado`);
+            const recordatorio = await this.repository.findOneBy({id: data.id});
+            if(!recordatorio) throw new Error(`Recordatorio con id ${data.id} no encontrado`);
 
-            await this.repository.update({id: data.id}, data)
+            await this.repository.update({id: data.id}, data);
             return 'Se actualizo correctamente!!!';
         } else {
             const entity = await this.repository.create(data);
@@ -40,8 +40,8 @@ export class NoteService {
     }
 
     async delete(id: number) {
-        var data = await this.findById(id);
-        if (!data) throw new Error(`Entidad con id ${id} no encontrado`);
+        const data = await this.findById(id);
+        if (!data) throw new Error(`Recordatorio con id ${id} no encontrado`);
         await this.repository.delete({id: id});
         return 'Se elimino correctamente!!!';
     }
@@ -49,10 +49,10 @@ export class NoteService {
     async findById(id: number) {
         const entity = await this.repository.findOne({
             where: { id },
-            relations: ['usuario', 'shares']
+            relations: ['note']
         });
 
-        if(!entity) throw new Error(`Entidad con id ${id} no encontrado`);
+        if(!entity) throw new Error(`Recordatorio con id ${id} no encontrado`);
 
         return entity;
     }

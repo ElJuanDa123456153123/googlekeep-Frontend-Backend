@@ -10,7 +10,7 @@ export class NoteshareDto {
     @IsNumber()
     @IsNotEmpty()
     role: number;
-    
+
     @IsNotEmpty()
     note: NoteDto;
 
