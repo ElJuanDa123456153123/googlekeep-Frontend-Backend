@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
+import { UsuarioModel } from './shared/usuario.model';
 
 @Component({
-    selector: 'app-usuario',
+    selector: 'app-usuario-list',
     imports: [
         CommonModule,
         DatePickerModule,
@@ -15,9 +16,11 @@ import { TableModule } from 'primeng/table';
     templateUrl: './usuario-list.component.html',
 })
 
-export class UsuarioComponent {
+export class UsuarioListComponent {
     date: Date = new Date();
-    dataUsuarios: any[] = [];
+    dataUsuarios: UsuarioModel[] = [];
+
+    ngOnInit(): void {}
 }
 
 
