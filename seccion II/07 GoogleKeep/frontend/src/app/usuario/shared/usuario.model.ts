@@ -1,6 +1,8 @@
 export class UsuarioModel {
     id!: number;
-    nombre!: string;
+    name!: string;
     email!: string;
-    updatedAt!: Date;
+    password?: string;
+    created_at!: Date;
+    updated_at!: Date;
 }

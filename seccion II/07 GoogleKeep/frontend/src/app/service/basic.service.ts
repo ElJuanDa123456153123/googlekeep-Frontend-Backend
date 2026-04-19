@@ -10,4 +10,12 @@ export class BasicService {
     basePost(endpoint: string, data: any = {}): Observable<any> {
         return this.serviceHttp.post(`${this.baseUrl}/${endpoint}`, data);
     }
+
+    baseGet(endpoint: string): Observable<any> {
+        return this.serviceHttp.get(`${this.baseUrl}/${endpoint}`);
+    }
+
+    baseDelete(endpoint: string): Observable<any> {
+        return this.serviceHttp.delete(`${this.baseUrl}/${endpoint}`);
+    }
 }

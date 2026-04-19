@@ -6,7 +6,14 @@
             [(ngModel)] = "date"/>
         </div>
 
-        <p-table [value]="dataUsuarios" [tableStyle]="{ 'min-width': '50rem' }">
+        <div class="card flex justify-center">
+            <button pButton (click)="createUsuario()">
+                <i class="pi pi-check" pButtonIcon></i>
+                <span pButtonLabel>Nuevo</span>
+            </button>
+        </div>
+
+        <p-table [value]="dataUsuarios()" [tableStyle]="{ 'min-width': '50rem' }">
                 <ng-template #header>
                     <tr>
                         <th>Name</th>
@@ -17,15 +24,20 @@
                 </ng-template>
                 <ng-template #body let-item>
                     <tr>
-                        <td>{{ item.Name }}</td>
-                        <td>{{ item.Email }}</td>
-                        <td>{{ item.update_at }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.updated_at | date:'medium' }}</td>
                         <td>
-                            <button pButton type="button" label="Editar" class="p-button-rounded p-button-success"></button>
-                            <button pButton type="button" label="Eliminar" class="p-button-rounded p-button-danger"></button>
+                            <button pButton type="button" (click)="updateUsuario(item)" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                            <button pButton type="button" (click)="deleteUsuario(item, $event)" icon="pi pi-trash" severity="danger" class="p-button-rounded p-button-text"></button>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
+
+        <p-confirmDialog />
+
+        <app-usuario (messageEvent)="loadUsuarios()"></app-usuario>
+
     </div>
     

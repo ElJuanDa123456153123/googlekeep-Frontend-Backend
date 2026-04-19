@@ -23,7 +23,7 @@ async function bootstrap() {
     transform: true,            //Transforma los datos de entrada al tipo definido en el DTO
   }));
 
-  var port = 3001;
+  var port = 3000;
   await app.listen(port);
 }
 bootstrap();

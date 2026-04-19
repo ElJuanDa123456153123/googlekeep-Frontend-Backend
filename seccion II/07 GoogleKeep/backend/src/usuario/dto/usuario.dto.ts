@@ -15,9 +15,10 @@ export class UsuarioDto {
     @IsEmail({}, {message: 'El email no es válido'})
     @MaxLength(150)
     email: string;
+    
 
-    @IsNotEmpty({message: 'La contraseña es obligatoria'})
+    @IsOptional()
     @MinLength(6, {message: 'La contraseña debe tener al menos 6 caracteres'})
     @MaxLength(50, {message: 'La contraseña no debe exceder los 50 caracteres'})
-    password: string;
+    password?: string;
 }

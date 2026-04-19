@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, HttpStatus, HttpCode } from '@nestjs/common';
 import { UsuarioDto } from './dto/usuario.dto';
 import { UsuarioService } from './usuario.service';
 
@@ -25,13 +25,17 @@ export class UsuarioController {
   }
 
   @Post('save')
+  @HttpCode(HttpStatus.OK)
   async save(@Body() data: UsuarioDto) {
-    return await this.service.save(data);
+    const result = await this.service.save(data);
+    return { message: result, success: true };
   }
 
   @Post('delete/:id')
+  @HttpCode(HttpStatus.OK)
   async deletePerson(@Param('id', ParseIntPipe) id: number) {
-    return await this.service.delete(id);
+    const result = await this.service.delete(id);
+    return { message: result, success: true };
   }
 
   @Post('jwt')
