@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\googlekeep.WebApp.props" />
+</Project>

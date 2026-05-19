@@ -1,0 +1,13 @@
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\bin\Debug\net9.0\googlekeep.deps.json
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\bin\Debug\net9.0\googlekeep.dll
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\bin\Debug\net9.0\googlekeep.pdb
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\googlekeep.csproj.AssemblyReference.cache
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\googlekeep.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\googlekeep.AssemblyInfoInputs.cache
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\googlekeep.AssemblyInfo.cs
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\googlekeep.csproj.CoreCompileInputs.cache
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\googlekeep.sourcelink.json
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\googlekeep.dll
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\refint\googlekeep.dll
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\googlekeep.pdb
+C:\Users\David\OneDrive\Documentos\7mo Semestre\Taller de Aplicaciones de Internet\googlekeep inge\NestJS_FREE\seccion II\09 GoogleKeep\googlekeep\obj\Debug\net9.0\ref\googlekeep.dll

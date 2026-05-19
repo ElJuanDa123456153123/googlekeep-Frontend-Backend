@@ -27,8 +27,9 @@ export class AppMenu {
                 label: 'Home',
                 items: [
                     { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-                    { label: 'Usuario', icon: 'pi pi-fw pi-home', routerLink: ['/usuario'] }
-                        ]
+                    { label: 'Usuario', icon: 'pi pi-fw pi-home', routerLink: ['/usuario'] },
+                    { label: 'Producto', icon: 'pi pi-fw pi-box', routerLink: ['/producto'] }
+                ]
             },
             {
                 label: 'UI Components',

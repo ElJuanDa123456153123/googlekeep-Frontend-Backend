@@ -14,6 +14,9 @@ import { NoteShareService } from './noteshare/noteshare.service';
 import { NoteController } from './note/note.controller';
 import { NoteService } from './note/note.service';
 import { AuthModule } from './auth/auth.module';
+import { Producto } from './producto/model/producto.model';
+import { ProductoController } from './producto/producto.controller';
+import { ProductoService } from './producto/producto.service';
 
 @Module({
   imports: [
@@ -25,20 +28,22 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRootAsync({
       useFactory: ormConfig
     }),
-    TypeOrmModule.forFeature([Usuario, Noteshare, Note, Noteshare]),
+    TypeOrmModule.forFeature([Usuario, Noteshare, Note, Noteshare, Producto]),
     AuthModule
   ],
   controllers: [
     AppController, 
     UsuarioController,
     NoteShareController,
-    NoteController
+    NoteController,
+    ProductoController
   ],
   providers: [
     // AppService
     UsuarioService,
     NoteShareService,
-    NoteService
+    NoteService,
+    ProductoService
   ],
 })
 export class AppModule {}

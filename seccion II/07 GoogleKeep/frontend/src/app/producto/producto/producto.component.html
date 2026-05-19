@@ -1,0 +1,51 @@
+<div class="card flex justify-center">
+    <p-dialog header="Producto" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+        <span class="p-text-secondary block mb-8">Registra nuevos productos.</span>
+
+        <div class="flex items-center gap-4 mb-4">
+            <label for="nombre" class="font-semibold w-24">Nombre</label>
+            <input pInputText id="nombre" class="flex-auto" autocomplete="off"
+                [ngModel]="entity().nombre"
+                (ngModelChange)="entity.set({...entity(), nombre: $event})" />
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+            <label for="descripcion" class="font-semibold w-24">Descripción</label>
+            <input pInputText id="descripcion" class="flex-auto" autocomplete="off"
+                [ngModel]="entity().descripcion"
+                (ngModelChange)="entity.set({...entity(), descripcion: $event})" />
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+            <label for="precio" class="font-semibold w-24">Precio</label>
+            <input pInputText id="precio" type="number" class="flex-auto" autocomplete="off"
+                [ngModel]="entity().precio"
+                (ngModelChange)="entity.set({...entity(), precio: +$event})" />
+        </div>
+
+        <div class="flex items-center gap-4 mb-8">
+            <label for="stock" class="font-semibold w-24">Stock</label>
+            <input pInputText id="stock" type="number" class="flex-auto" autocomplete="off"
+                [ngModel]="entity().stock"
+                (ngModelChange)="entity.set({...entity(), stock: +$event})" />
+        </div>
+
+        <div class="flex justify-end gap-2">
+            <p-button label="Cancelar" severity="secondary" (click)="closeDialog()" />
+            <p-button label="Guardar" (click)="saveMethod()" />
+        </div>
+    </p-dialog>
+</div>
+
+<div class="card flex justify-center">
+    <p-dialog header="Eliminar Producto" [modal]="true" [(visible)]="visibleEliminar" [style]="{ width: '25rem' }">
+        <div class="flex items-center gap-4 mb-8">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3rem; color: #ef4444;"></i>
+            <span>¿Está seguro de eliminar <strong>{{ entityToDelete()?.nombre }}</strong>?</span>
+        </div>
+        <div class="flex justify-end gap-2">
+            <p-button label="Cancelar" severity="secondary" (click)="closeDialogEliminar()" />
+            <p-button label="Eliminar" severity="danger" (click)="confirmarEliminar()" />
+        </div>
+    </p-dialog>
+</div>

@@ -1,0 +1,6 @@
+@googlekeep.WebApp_HostAddress = http://localhost:5247
+
+GET {{googlekeep.WebApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
